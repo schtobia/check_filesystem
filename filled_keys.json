@@ -1,0 +1,15 @@
+{
+    "/dev/sda1":
+    {
+        "sha256": "ba44a4818ec82b564f64136ff67cab878c6d93582852100b43e06f6f277c7ac1"
+    },
+    "/dev/sda2":
+    {
+        "luksHeader": "af1381d052f993bc9006bbe880acdbad4be4eb578e972fb8f15a934204e5705e"
+    },
+    "/dev/sda":
+    {
+        "sha256": "47ef1a4cdb14240b0d9cd6c295e66a21ac92c231c30f9b493a0fc7f813a8724d",
+        "size": 1048576
+    }
+}

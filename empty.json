@@ -1,0 +1,15 @@
+{
+    "/dev/sda1":
+    {
+        "sha256": null
+    },
+    "/dev/sda2":
+    {
+        "luksHeader": null
+    },
+    "/dev/sda":
+    {
+        "sha256": null,
+        "size": 1048576
+    }
+}
