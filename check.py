@@ -11,11 +11,11 @@ import traceback
 #enable logging to both syslog and stderr
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
-loggingFormattingString = '%(module)s.%(funcName)s: %(levelname)s: %(message)s'
+logFormatter = logging.Formatter('%(module)s.%(funcName)s: %(levelname)s: %(message)s')
 sysloghandler = logging.handlers.SysLogHandler(address = '/dev/log')
-sysloghandler.setFormatter(logging.Formatter(loggingFormattingString))
+sysloghandler.setFormatter(logFormatter)
 stderrhandler = logging.StreamHandler()
-stderrhandler.setFormatter(logging.Formatter(loggingFormattingString))
+stderrhandler.setFormatter(logFormatter)
 log.addHandler(sysloghandler)
 log.addHandler(stderrhandler)
 
