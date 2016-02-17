@@ -97,5 +97,6 @@ if __name__ == '__main__':
         log.info("Checksums have changed, updating key file")
         with open(key_file_name, 'w') as text_file:
             json.dump(json_data, text_file)
+            print json.dumps(json_data, indent = 4)
 
     exit(exitCode)
