@@ -8,12 +8,16 @@ import logging.handlers
 import sys
 import traceback
 
-#enable syslog logging
+#enable logging to both syslog and stderr
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
-handler = logging.handlers.SysLogHandler(address = '/dev/log')
-handler.setFormatter(logging.Formatter('%(module)s: %(levelname)s: %(message)s'))
-log.addHandler(handler)
+loggingFormattingString = '%(module)s: %(levelname)s: %(message)s'
+sysloghandler = logging.handlers.SysLogHandler(address = '/dev/log')
+sysloghandler.setFormatter(logging.Formatter(loggingFormattingString))
+stderrhandler = logging.StreamHandler()
+stderrhandler.setFormatter(logging.Formatter(loggingFormattingString))
+log.addHandler(sysloghandler)
+log.addHandler(stderrhandler)
 
 # write all uncaught exceptions to syslog
 sys.excepthook = lambda ex_cls, ex, tb: log.critical('{0}: {1} -- {2}'.format(ex_cls, ex, traceback.format_tb(tb)))
