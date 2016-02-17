@@ -65,7 +65,7 @@ if __name__ == '__main__':
             actual_sum = calc_sha256_on_luksHeader(device_name)
             if desired_sum == None:
                 device['luksHeader'] = actual_sum
-                log.notice(u"○ Updating configuration file: LUKS header for " + device_name + ": " + actual_sum[:8] + u"…")
+                log.info(u"○ Updating configuration file: LUKS header for " + device_name + ": " + actual_sum[:8] + u"…")
                 data_has_changed = True
             elif desired_sum <> actual_sum:
                 log.error(u"✗ LUKS header for " + device_name + " failed: Should be " + desired_sum[:8] + u"…" + ", but really is " + actual_sum[:8] + u"…")
@@ -81,7 +81,7 @@ if __name__ == '__main__':
             actual_sum = calculate_sha256_from_file(device_name, size)
             if desired_sum == None:
                 device['sha256'] = actual_sum
-                log.notice(u"○ Updating configuration file: SHA sum for " + device_name + ": " + actual_sum[:8] + u"…")
+                log.info(u"○ Updating configuration file: SHA sum for " + device_name + ": " + actual_sum[:8] + u"…")
                 data_has_changed = True
             elif desired_sum <> actual_sum:
                 log.error(u"✗ SHA sum for " + device_name + " failed: Should be " + desired_sum[:8] + u"…" + ", but really is " + actual_sum[:8] + u"…")
@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 log.info(u"✓ SHA sum for " + device_name + " correct: " + actual_sum[:8] + u"…")
 
     if data_has_changed:
-        log.notice("Checksums have changed, updating key file")
+        log.info("Checksums have changed, updating key file")
         with open(key_file_name, 'w') as text_file:
             json.dump(json_data, text_file)
 
