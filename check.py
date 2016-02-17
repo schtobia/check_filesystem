@@ -49,13 +49,13 @@ def calc_sha256_on_luksHeader(device_name):
         pass
     return header_sum_actual
 
-if __name__ == '__main__':
+def main():
     key_file_name = None
     try:
         key_file_name = sys.argv[1]
     except IndexError:
         print "Usage: " + sys.argv[0] + " <key file json>"
-        exit(1)
+        return 1
 
     json_data = None
     with open(key_file_name, 'r') as text_file:
@@ -76,6 +76,7 @@ if __name__ == '__main__':
                 exitCode = 1
             else:
                 log.info(u"✓ LUKS header for " + device_name + " correct: " + actual_sum[:8] + u"…")
+
         if device.has_key("sha256"):
             desired_sum = device['sha256']
             if device.has_key('size'):
@@ -97,6 +98,9 @@ if __name__ == '__main__':
         log.info("Checksums have changed, updating key file")
         with open(key_file_name, 'w') as text_file:
             json.dump(json_data, text_file)
-            print json.dumps(json_data, indent = 4)
+        print json.dumps(json_data, indent = 4)
 
-    exit(exitCode)
+    return exitCode
+
+if __name__ == '__main__':
+    exit(main())
